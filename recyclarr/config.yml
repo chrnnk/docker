@@ -1,0 +1,126 @@
+# For more details on the configuration, see the Configuration Reference on the wiki here:
+# https://github.com/recyclarr/recyclarr/wiki/Configuration-Reference
+
+# Configuration specific to Sonarr
+sonarr:
+    # Set the URL/API Key to your actual instance
+  - base_url: http://10.10.10.10:26100
+    api_key: 
+
+    # Quality definitions from the guide to sync to Sonarr. Choice: anime, series, hybrid
+    quality_definition: hybrid
+
+    # Release profiles from the guide to sync to Sonarr.
+    # You can optionally add tags and make negative scores strictly ignored
+    release_profiles:
+      # Series
+      - trash_ids:
+          - EBC725268D687D588A20CBC5F97E538B # Low Quality Groups
+          - 1B018E0C53EC825085DD911102E2CA36 # Release Sources (Streaming Service)
+          - 71899E6C303A07AF0E4746EFF9873532 # P2P Groups + Repack/Proper
+          - 76e060895c5b8a765c310933da0a5357 # Optionals
+      # Anime (Uncomment below if you want it)
+#      - trash_ids:
+#          - d428eda85af1df8904b4bbe4fc2f537c # Anime - First release profile
+#          - 6cd9e10bb5bb4c63d2d7cd3279924c7b # Anime - Second release profile
+
+# Configuration specific to Radarr.
+radarr:
+  # Set the URL/API Key to your actual instance
+  - base_url: http://10.10.10.10:26200
+    api_key: 
+
+    # Which quality definition in the guide to sync to Radarr. Only choice right now is 'movie'
+    quality_definition:
+      type: movie
+
+    # Set to 'true' to automatically remove custom formats from Radarr when they are removed from
+    # the guide or your configuration. This will NEVER delete custom formats you manually created!
+    delete_old_custom_formats: false
+
+    custom_formats:
+      # A list of custom formats to sync to Radarr. Must match the "name" in the importable JSON.
+      # Do NOT use the heading names here, those do not work! These are case-insensitive.
+      - names:
+          - TrueHD ATMOS
+          - DTS X
+          - ATMOS (undefined)
+          - DD+ ATMOS
+          - TrueHD
+          - DTS-HD MA
+          - FLAC
+          - PCM
+          - DTS-HD HRA
+          - DD+
+          - DTS-ES
+          - DTS
+          - AAC
+          - DD
+          - Hybrid
+          - Remaster
+          - 4K Remaster
+          - Criterion Collection
+          - Special Edition
+          - BR-DISK
+          - EVO (no WEBDL)
+          - LQ
+          - x265 (720/1080p)
+          - 3D
+          - No-RlsGroup
+          - Obfuscated
+          - DV (WEBDL)
+          - Repack/Proper
+          - HQ
+          - HQ-WEBDL
+          - HQ-Remux
+        quality_profiles:
+          - name: 1080p
+          - name: 720p
+      - names:
+          - DV HDR10
+        quality_profiles:
+          - name: 1080p
+            score: 5550
+          - name: 720p
+            score: 5550
+      - names:
+          - DV
+          - DV HLG
+          - DV SDR
+        quality_profiles:
+          - name: 1080p
+            score: 5500
+          - name: 720p
+            score: 5500
+      - names:
+          - HDR10+
+        quality_profiles:
+          - name: 1080p
+            score: 4600
+          - name: 720p
+            score: 4600
+      - names:
+          - HDR10
+        quality_profiles:
+          - name: 1080p
+            score: 4550
+          - name: 720p
+            score: 4550
+      - names:
+          - HDR
+          - HDR (undefined)
+          - PQ
+          - HLG
+        quality_profiles:
+          - name: 1080p
+            score: 4500
+          - name: 720p
+            score: 4500
+      - names:
+          - IMAX
+          - IMAX Enhanced
+        quality_profiles:
+          - name: 1080p
+            score: -10000
+          - name: 720p
+            score: -10000
