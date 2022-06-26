@@ -1,5 +1,10 @@
 ## Useful
 
+#### Show running
+```sh
+docker ps
+```
+
 #### Stop all containers
 ```sh
 docker stop $(docker ps -q)
