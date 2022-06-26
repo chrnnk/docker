@@ -5,9 +5,9 @@
 docker stop $(docker ps -q)
 ```
 
-#### Stop all containers
+#### Restart all containers
 ```sh
-docker stop $(docker ps -q)
+docker restart $(docker ps -aq)
 ```
 
 ## Docker service
