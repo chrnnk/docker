@@ -1,3 +1,15 @@
+## Useful
+
+#### Stop all containers
+```sh
+docker stop $(docker ps -q)
+```
+
+#### Stop all containers
+```sh
+docker stop $(docker ps -q)
+```
+
 ## Docker service
 
 ```sh
