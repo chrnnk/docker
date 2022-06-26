@@ -15,13 +15,6 @@ docker stop $(docker ps -q)
 docker restart $(docker ps -aq)
 ```
 
-## Docker service
-
-```sh
-/etc/rc.d/rc.docker [command]
-```
-Available commands: start stop restart status
-
 ## Docker containers
 
 #### Basic commands
