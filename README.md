@@ -15,6 +15,11 @@ docker stop $(docker ps -q)
 docker restart $(docker ps -aq)
 ```
 
+#### Pull all new images
+```sh
+docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pull 
+```
+
 ## Docker containers
 
 #### Basic commands
