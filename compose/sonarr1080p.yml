@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  sonarr1080p:
+    container_name: sonarr1080p
+    image: lscr.io/linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+      - 26100:8989/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/sonarr1080p:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}

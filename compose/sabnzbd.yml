@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  sabnzbd:
+    container_name: sabnzbd
+    image: lscr.io/linuxserver/sabnzbd:latest
+    restart: unless-stopped
+    ports:
+      - 25200:8080/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/sabnzbd:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}
