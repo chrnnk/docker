@@ -1,19 +1,31 @@
-version: "3"
+version: "3.9"
 
 networks:
   default:
-    external: true
     name: custom-bridge
+    driver: bridge
+
+x-env-tz: &env-tz
+  TZ: $TZ
+x-env-common: &env-common
+  PUID: $PUID
+  PGID: $PGID
+
+x-common: &common
+  networks:
+    - default
+  security_opt:
+    - no-new-privileges:true
+  restart: unless-stopped #no, always
 
 services:
   overseerr:
+    <<: *common
     container_name: overseerr
     image: sctx/overseerr:latest
-    restart: unless-stopped
+    environment:
+      <<: *env-tz
     ports:
       - 33200:5055/tcp
     volumes:
-      - /opt/overseerr:/app/config:rw
-    environment:
-      - TZ=America/New_York
-      # - LOG_LEVEL=debug
+      - $DOCKERDIR/appdata/overseerr:/app/config:rw
