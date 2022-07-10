@@ -23,6 +23,7 @@ services:
     image: sctx/overseerr:latest
     environment:
       << : *env-tz
+      - stack.env
     ports:
       - 33200:5055/tcp
     volumes:
