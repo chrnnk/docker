@@ -18,10 +18,10 @@ services:
     image: lissy93/dashy:latest
     << : *common
     environment:
-      - TZ: ${TZ}
-      - UID: ${PUID}
-      - GID: ${PGID}
-      - NODE_ENV: production
+      - TZ=${TZ}
+      - UID=${PUID}
+      - GID=${PGID}
+      - NODE_ENV=production
     ports:
       - 33100:80/tcp
     volumes:

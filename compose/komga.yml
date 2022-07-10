@@ -16,10 +16,10 @@ services:
   komga:
     container_name: komga
     image: gotson/komga
-    user: "${PUID}:${PGID}"
+    user: ${PUID}:${PGID}
     << : *common
     environment:
-      - TZ: ${TZ}
+      - TZ=${TZ}
     ports:
       - 28100:8080/tcp
     volumes:
