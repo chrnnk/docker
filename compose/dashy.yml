@@ -1,21 +1,28 @@
-version: "3"
+version: "3.9"
 
 networks:
   default:
-    external: true
     name: custom-bridge
+    driver: bridge
+
+x-common: &common
+  networks:
+    - default
+  security_opt:
+    - no-new-privileges:true
+  restart: unless-stopped #no, always
 
 services:
   dashy:
     container_name: dashy
     image: lissy93/dashy:latest
-    restart: unless-stopped
+    << : *common
+    environment:
+      - TZ: ${TZ}
+      - UID: ${PUID}
+      - GID: ${PGID}
+      - NODE_ENV: production
     ports:
       - 33100:80/tcp
     volumes:
-      - /opt/dashy/conf.yml:/app/public/conf.yml:rw
-    environment:
-      - TZ=${TZ}
-      - UID=${UID}
-      - GID=${GID}
-      - NODE_ENV=production
+      - $APPDATA/dashy:/app/public:rw

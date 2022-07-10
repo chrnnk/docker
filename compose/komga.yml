@@ -1,21 +1,28 @@
-version: "3"
+version: "3.9"
 
 networks:
   default:
-    external: true
     name: custom-bridge
+    driver: bridge
+
+x-common: &common
+  networks:
+    - default
+  security_opt:
+    - no-new-privileges:true
+  restart: unless-stopped #no, always
 
 services:
   komga:
     container_name: komga
     image: gotson/komga
-    restart: unless-stopped
+    user: "${PUID}:${PGID}"
+    << : *common
+    environment:
+      - TZ: ${TZ}
     ports:
       - 28100:8080/tcp
     volumes:
-      - /mnt/truenas/comics/:/comics:rw,slave
-      - /mnt/truenas/books/:/books:rw,slave
-      - /opt/komga:/config:rw
-    environment:
-      - TZ=America/New_York
-    user: "1000:1000"
+      - $MEDIADIR/comics/:/comics:rw,slave
+      - $MEDIADIR/books/:/books:rw,slave
+      - $APPDATA/komga:/config:rw

@@ -1,0 +1,18 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  recyclarr:
+    container_name: recyclarr
+    image: ghcr.io/recyclarr/recyclarr
+    restart: unless-stopped
+    volumes:
+      - /opt/recyclarr:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}

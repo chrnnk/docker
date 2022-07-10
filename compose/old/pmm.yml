@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  pmm:
+    container_name: pmm
+    image: meisnate12/plex-meta-manager
+    restart: unless-stopped
+    volumes:
+      - /opt/pmm:/config:rw
+    environment:
+      - TZ=America/New_York
+      - PMM_TIME=6:00
+      - PMM_DIVIDER==
+      - PMM_WIDTH=200
+      - PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANG=C.UTF-8
+      - PYTHON_VERSION=3.9.13
+      - PYTHON_PIP_VERSION=22.0.4
+      - PYTHON_SETUPTOOLS_VERSION=58.1.0
+      - PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/a312303dbd516f6a692f2fee59852701bd828dd8/public/get-pip.py
+      - TINI_VERSION=v0.19.0
+    entrypoint:
+      - /tini
+      - -s
+      - python3
+      - plex_meta_manager.py
+      - --

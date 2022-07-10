@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  radarr1080p:
+    container_name: radarr1080p
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 26200:7878/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/radarr1080p:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}
