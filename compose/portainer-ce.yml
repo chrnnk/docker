@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  portainer-ce:
+    image: portainer/portainer-ce:latest
+    container_name: portainer-ce
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/portainer-ce:/data
+    ports:
+      - 8000:8000
+      - 9000:9000
+      - 9443:9443
