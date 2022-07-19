@@ -1,5 +1,9 @@
----
 version: '3.4'
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
 
 services:
   postgresql:
