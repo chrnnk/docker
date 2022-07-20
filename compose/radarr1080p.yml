@@ -19,3 +19,4 @@ services:
       - TZ=${TZ}
       - UID=${UID}
       - GID=${GID}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
