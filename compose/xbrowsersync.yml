@@ -1,0 +1,43 @@
+version: "3.7"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  xbrowsersync-db:
+    container_name: xbrowsersync-db
+    environment:
+      - MONGO_INITDB_DATABASE=$DB_NAME
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME=$DB_USERNAME
+      - XBS_DB_NAME=$DB_NAME
+      - XBS_DB_PASSWORD=$DB_PASSWORD
+      - XBS_DB_USERNAME=$DB_USERNAME
+    image: mongo:4.4.4
+    restart: unless-stopped
+    volumes:
+      - /opt/xbrowsersync-data:/data/db
+      - /opt/xbrowsersync-db:/data/backups
+      - ./mongoconfig.js:/docker-entrypoint-initdb.d/mongoconfig.js
+  api:
+    container_name: xbrowsersync-api
+    depends_on:
+      - xbrowsersync-db
+    environment:
+      - XBROWSERSYNC_DB_PWD=$DB_PASSWORD
+      - XBROWSERSYNC_DB_USER=$DB_USERNAME
+    healthcheck:
+      test: [ CMD, node, /usr/src/api/healthcheck.js ]
+      interval: 1m
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    image: xbrowsersync/api:1.1.13
+    restart: unless-stopped
+    ports:
+      - 26542:8080/tcp
+    volumes:
+      - ./settings.json:/usr/src/api/config/settings.json
+      - ./healthcheck.js:/usr/src/api/healthcheck.js
