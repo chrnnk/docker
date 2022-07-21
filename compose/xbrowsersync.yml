@@ -21,7 +21,7 @@ services:
       - /opt/xbrowsersync-data:/data/db
       - /opt/xbrowsersync-db:/data/backups
       - ./mongoconfig.js:/docker-entrypoint-initdb.d/mongoconfig.js
-  api:
+  xbrowsersync-api:
     container_name: xbrowsersync-api
     depends_on:
       - xbrowsersync-db
@@ -29,15 +29,28 @@ services:
       - XBROWSERSYNC_DB_PWD=$DB_PASSWORD
       - XBROWSERSYNC_DB_USER=$DB_USERNAME
     healthcheck:
-      test: [ CMD, node, /usr/src/api/healthcheck.js ]
-      interval: 1m
-      timeout: 10s
+      test: [ "CMD", "node", "/usr/src/api/healthcheck.js" ]
+      interval: "1m"
+      timeout: "10s"
       retries: 5
-      start_period: 30s
+      start_period: "30s"
     image: xbrowsersync/api:1.1.13
     restart: unless-stopped
     ports:
-      - 26542:8080/tcp
+      - 8080:8080/tcp
     volumes:
       - ./settings.json:/usr/src/api/config/settings.json
       - ./healthcheck.js:/usr/src/api/healthcheck.js
+  xbrowsersync-caddy:
+    command: "caddy reverse-proxy --from $API_HOSTNAME --to api:8080"
+    container_name: xbrowsersync-caddy
+    depends_on:
+      - xbrowsersync-api
+    image: caddy:2.3.0-alpine
+    ports:
+      - "4443:443"
+      - "4480:80"
+    restart: "unless-stopped"
+    volumes:
+      - /opt/xbrowsersync-caddy/conf:/config
+      - /opt/xbrowsersync-caddy/conf:/data
