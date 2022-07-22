@@ -1,0 +1,1 @@
+docker run --name xbs-api -p 8080:8080 -e XBROWSERSYNC_DB_USER=xbsdb -e XBROWSERSYNC_DB_PWD=m8BxYSYcs5s5P5 -v /home/nick/docker/appdata/xbs/settings.json:/usr/src/api/config/settings.json -d xbrowsersync/api

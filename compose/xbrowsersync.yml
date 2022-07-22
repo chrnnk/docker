@@ -1,13 +1,8 @@
 version: "3.7"
 
-networks:
-  default:
-    external: true
-    name: custom-bridge
-
 services:
-  xbrowsersync-db:
-    container_name: xbrowsersync-db
+  db:
+    container_name: xbs-db
     environment:
       - MONGO_INITDB_DATABASE=$DB_NAME
       - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
@@ -18,13 +13,13 @@ services:
     image: mongo:4.4.4
     restart: unless-stopped
     volumes:
-      - /opt/xbrowsersync-data:/data/db
-      - /opt/xbrowsersync-db:/data/backups
+      - xbs-db-data:/data/db
+      - xbs-db-backups:/data/backups
       - ./mongoconfig.js:/docker-entrypoint-initdb.d/mongoconfig.js
-  xbrowsersync-api:
-    container_name: xbrowsersync-api
+  api:
+    container_name: xbs-api
     depends_on:
-      - xbrowsersync-db
+      - db
     environment:
       - XBROWSERSYNC_DB_PWD=$DB_PASSWORD
       - XBROWSERSYNC_DB_USER=$DB_USERNAME
@@ -36,21 +31,25 @@ services:
       start_period: "30s"
     image: xbrowsersync/api:1.1.13
     restart: unless-stopped
-    ports:
-      - 8080:8080/tcp
     volumes:
       - ./settings.json:/usr/src/api/config/settings.json
       - ./healthcheck.js:/usr/src/api/healthcheck.js
-  xbrowsersync-caddy:
+  reverse-proxy:
     command: "caddy reverse-proxy --from $API_HOSTNAME --to api:8080"
-    container_name: xbrowsersync-caddy
+    container_name: xbs-reverse-proxy
     depends_on:
-      - xbrowsersync-api
+      - api
     image: caddy:2.3.0-alpine
     ports:
-      - "4443:443"
-      - "4480:80"
-    restart: "unless-stopped"
+      - 443:443/tcp
+      - 80:80/tcp
+    restart: unless-stopped
     volumes:
-      - /opt/xbrowsersync-caddy/conf:/config
-      - /opt/xbrowsersync-caddy/conf:/data
+      - xbs-caddy-config:/config
+      - xbs-caddy-data:/data
+
+volumes:
+  xbs-caddy-config:
+  xbs-caddy-data:
+  xbs-db-backups:
+  xbs-db-data:
