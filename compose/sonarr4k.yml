@@ -1,0 +1,22 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  sonarr4k:
+    container_name: sonarr4k
+    image: lscr.io/linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+      - 26101:8989/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/sonarr4k:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sonarr

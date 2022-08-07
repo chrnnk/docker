@@ -1,0 +1,22 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  radarr4k:
+    container_name: radarr4k
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 26200:7878/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/radarr4k:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
