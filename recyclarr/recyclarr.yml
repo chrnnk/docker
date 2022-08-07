@@ -1,0 +1,260 @@
+sonarr:
+  - base_url: XXXXX
+    api_key: XXXXX
+    quality_definition: series
+    release_profiles:
+      - trash_ids:
+          - EBC725268D687D588A20CBC5F97E538B # Low Quality Groups
+          - 1B018E0C53EC825085DD911102E2CA36 # Release Sources (Streaming Service)
+          - 71899E6C303A07AF0E4746EFF9873532 # P2P Groups + Repack/Proper
+          - 76e060895c5b8a765c310933da0a5357 # Optionals
+
+radarr:
+  - base_url: XXXXX
+    api_key: XXXXX
+    quality_definition:
+      type: movie
+    delete_old_custom_formats: true
+    custom_formats:
+      - names: [TrueHD ATMOS]
+        quality_profiles:
+            - name: 1080p
+              score: 2300
+            - name: 720p
+              score: 2300
+      - names: [DTS X]
+        quality_profiles:
+          - name: 1080p
+            score: 2200
+          - name: 720p
+            score: 2200
+      - names: [ATMOS (undefined)]
+        quality_profiles:
+          - name: 1080p
+            score: 2100
+          - name: 720p
+            score: 2100
+      - names: [DD+ ATMOS]
+        quality_profiles:
+          - name: 1080p
+            score: 2000
+          - name: 720p
+            score: 2000
+      - names: [TrueHD]
+        quality_profiles:
+          - name: 1080p
+            score: 1900
+          - name: 720p
+            score: 1900
+      - names: [DTS-HD MA]
+        quality_profiles:
+          - name: 1080p
+            score: 1800
+          - name: 720p
+            score: 1800
+      - names: [FLAC]
+        quality_profiles:
+          - name: 1080p
+            score: 1700
+          - name: 720p
+            score: 1700
+      - names: [PCM]
+        quality_profiles:
+          - name: 1080p
+            score: 1600
+          - name: 720p
+            score: 1600
+      - names: [DTS-HD HRA]
+        quality_profiles:
+          - name: 1080p
+            score: 1500
+          - name: 720p
+            score: 1500
+      - names: [DD+]
+        quality_profiles:
+          - name: 1080p
+            score: 1400
+          - name: 720p
+            score: 1400
+      - names: [DTS-ES]
+        quality_profiles:
+          - name: 1080p
+            score: 1300
+          - name: 720p
+            score: 1300
+      - names: [DTS]
+        quality_profiles:
+          - name: 1080p
+            score: 1200
+          - name: 720p
+            score: 1200
+      - names: [AAC]
+        quality_profiles:
+          - name: 1080p
+            score: 1100
+          - name: 720p
+            score: 1100
+      - names: [DD]
+        quality_profiles:
+          - name: 1080p
+            score: 1000
+          - name: 720p
+            score: 1000
+
+      - names: [DV HDR10]
+        quality_profiles:
+          - name: 1080p
+            score: 2300
+          - name: 720p
+            score: 2300
+      - names: [DV]
+        quality_profiles:
+          - name: 1080p
+            score: 2200
+          - name: 720p
+            score: 2200
+      - names: [DV HLG]
+        quality_profiles:
+          - name: 1080p
+            score: 2100
+          - name: 720p
+            score: 2100
+      - names: [DV SDR]
+        quality_profiles:
+          - name: 1080p
+            score: 2000
+          - name: 720p
+            score: 2000
+      - names: [HDR10+]
+        quality_profiles:
+          - name: 1080p
+            score: 1900
+          - name: 720p
+            score: 1900
+      - names: [HDR10]
+        quality_profiles:
+          - name: 1080p
+            score: 1800
+          - name: 720p
+            score: 1800
+      - names: [HDR]
+        quality_profiles:
+          - name: 1080p
+            score: 1700
+          - name: 720p
+            score: 1700
+      - names: [HDR (undefined)]
+        quality_profiles:
+          - name: 1080p
+            score: 1600
+          - name: 720p
+            score: 1600
+      - names: [PQ]
+        quality_profiles:
+          - name: 1080p
+            score: 1500
+          - name: 720p
+            score: 1500
+      - names: [HLG]
+        quality_profiles:
+          - name: 1080p
+            score: 1400
+          - name: 720p
+            score: 1400
+
+      - names: 
+        - HQ-Remux
+        - HQ
+        - HQ-WEBDL
+        quality_profiles:
+          - name: 1080p
+            score: 1000
+          - name: 720p
+            score: 1000
+
+      - names: [Repack/Proper]
+        quality_profiles:
+          - name: 1080p
+            score: 5
+          - name: 720p
+            score: 5
+      - names: [Repack2]
+        quality_profiles:
+          - name: 1080p
+            score: 6
+          - name: 720p
+            score: 6
+
+      - names: [Hybrid]
+        quality_profiles:
+          - name: 1080p
+            score: 100
+          - name: 720p
+            score: 100
+      - names: [Remaster]
+        quality_profiles:
+          - name: 1080p
+            score: 25
+          - name: 720p
+            score: 25
+      - names: [4K Remaster]
+        quality_profiles:
+          - name: 1080p
+            score: 25
+          - name: 720p
+            score: 25
+
+      - names: 
+        - Criterion Collection
+        - Special Edition
+        - IMAX
+        - IMAX Enhanced
+        - BR-DISK
+        - EVO (no WEBDL)
+        - LQ
+        - x265 (720/1080p)
+        - 3D
+        - No-RlsGroup
+        - Obfuscated
+        - Retags
+        - Bad Dual Groups
+        - DV (WEBDL)      
+        quality_profiles:
+          - name: 1080p
+            score: -10000
+          - name: 720p
+            score: -10000
+
+      - names: 
+        - UHD (CtrlHD) 
+        - UHD (DON)    
+        - UHD (W4NK3R) 
+        quality_profiles:
+          - name: 1080p
+            score: 2300
+          - name: 720p
+            score: 2300
+      - names: [UHD (SPHD)]
+        quality_profiles:
+          - name: 1080p
+            score: 2250
+          - name: 720p
+            score: 2250
+      - names: [UHD (HQMUX)]
+        quality_profiles:
+          - name: 1080p
+            score: 2200
+          - name: 720p
+            score: 2200
+      - names: [UHD (LEGi0N)]
+        quality_profiles:
+          - name: 1080p
+            score: 2150
+          - name: 720p
+            score: 2150
+      - names: [UHD (WEBDV)]
+        quality_profiles:
+          - name: 1080p
+            score: 1800
+          - name: 720p
+            score: 1800
