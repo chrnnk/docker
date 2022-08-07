@@ -11,7 +11,7 @@ services:
     image: lscr.io/linuxserver/radarr
     restart: unless-stopped
     ports:
-      - 26200:7878/tcp
+      - 26201:7878/tcp
     volumes:
       - /mnt/truenas:/media:rw,slave
       - /opt/radarr4k:/config:rw
