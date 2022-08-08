@@ -20,3 +20,4 @@ services:
       - UID=${UID}
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_ADDON=radarr-4k-logo
