@@ -21,5 +21,3 @@ services:
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
       - TP_ADDON=radarr-4k-logo
-      - TP_THEME=trueblack
-      - TP_COMMUNITY_THEME=true

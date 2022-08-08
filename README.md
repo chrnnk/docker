@@ -20,6 +20,12 @@ docker restart $(docker ps -aq)
 docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pull 
 ```
 
+
+#### Prune old images
+```sh
+docker image prune -a
+```
+
 ## Docker containers
 
 #### Basic commands
