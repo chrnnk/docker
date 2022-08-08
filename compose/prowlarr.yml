@@ -19,3 +19,4 @@ services:
       - UID=${UID}
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:prowlarr
+      - TP_THEME=trueblack
