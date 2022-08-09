@@ -23,3 +23,8 @@ services:
       - 33200:5055/tcp
     volumes:
       - $APPDATA/overseerr:/app/config:rw
+    healthcheck:
+      test: "curl --fail http://localhost:5055 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

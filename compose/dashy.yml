@@ -26,3 +26,8 @@ services:
       - 33100:80/tcp
     volumes:
       - $APPDATA/dashy:/app/public:rw
+    healthcheck:
+      test: "curl --fail http://localhost:80 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

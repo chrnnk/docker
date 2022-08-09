@@ -26,3 +26,8 @@ services:
       - $MEDIADIR/comics/:/comics:rw,slave
       - $MEDIADIR/books/:/books:rw,slave
       - $APPDATA/komga:/config:rw
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

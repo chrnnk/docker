@@ -1,10 +1,14 @@
----
-version: '3.8'
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
 
 services:
-  node_exporter:
+  prom_node_exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
+    container_name: prom_node_exporter
     command:
       - '--path.rootfs=/host'
     pid: host

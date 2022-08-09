@@ -6,20 +6,20 @@ networks:
     name: custom-bridge
 
 services:
-  tautulli:
-    image: ghcr.io/tautulli/tautulli
-    container_name: tautulli
-    restart: unless-stopped
+  NAME:
+    container_name: 
+    image: 
+    restart: 
+    ports:
+      - 1900:1900/udp #optional
     volumes:
-      - /opt/tautulli:/config
+      - /opt/ASD:/idk
     environment:
       - TZ=${TZ}
       - UID=${UID}
       - GID=${GID}
-    ports:
-      - 24100:8181
     healthcheck:
-      test: "curl --fail http://localhost:8181 || exit 1"
+      test: "curl --fail http://localhost:1900 || exit 1"
       interval: 1m30s
       timeout: 10s
       retries: 3

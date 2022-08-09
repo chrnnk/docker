@@ -20,3 +20,8 @@ services:
       - UID=${UID}
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:sabnzbd
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
