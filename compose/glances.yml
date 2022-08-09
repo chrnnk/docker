@@ -2,20 +2,16 @@ version: "3.9"
 
 networks:
   default:
+    external: true
     name: custom-bridge
     driver: bridge
-
-x-common: &common
-  networks:
-    - default
-  restart: unless-stopped #no, always
 
 services:
   glances:
     container_name: glances
     image: nicolargo/glances:latest-alpine
     pid: host
-    << : *common
+    restart: unless-stopped #no, always
     environment:
       - TZ: ${TZ}
       - GLANCES_OPT: -w
@@ -24,3 +20,8 @@ services:
       - 61209:61209/tcp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: "curl --fail http://localhost:61208 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
