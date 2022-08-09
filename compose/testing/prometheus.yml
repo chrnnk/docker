@@ -1,0 +1,24 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  sonarr1080p:
+    container_name: sonarr1080p
+    image: lscr.io/linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+      - 26100:8989/tcp
+    volumes:
+      - /mnt/truenas:/media:rw,slave
+      - /opt/sonarr1080p:/config:rw
+    environment:
+      - TZ=${TZ}
+      - UID=${UID}
+      - GID=${GID}
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sonarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true
