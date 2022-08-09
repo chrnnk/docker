@@ -28,3 +28,8 @@ services:
       - GID=${GID}
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

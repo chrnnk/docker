@@ -5,26 +5,23 @@ networks:
     name: custom-bridge
     driver: bridge
 
-x-common: &common
-  networks:
-    - default
-  security_opt:
-    - no-new-privileges:true
-  restart: unless-stopped #no, always
-
 services:
   overseerr:
     container_name: overseerr
     image: sctx/overseerr:latest
-    << : *common
+    networks:
+      - default
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped #no, always
     environment:
-      - TZ: $TZ
+      - TZ=${TZ}
     ports:
       - 33200:5055/tcp
     volumes:
       - $APPDATA/overseerr:/app/config:rw
-    healthcheck:
-      test: "curl --fail http://localhost:5055 || exit 1"
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
+#    healthcheck:
+#      test: "curl --fail http://localhost:5055 || exit 1"
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
