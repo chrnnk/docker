@@ -19,3 +19,8 @@ services:
     networks:
       - default
     user: '104'
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3

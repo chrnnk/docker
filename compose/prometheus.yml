@@ -24,7 +24,7 @@ services:
     environment:
       - TZ=${TZ}
     healthcheck:
-      test: "curl --fail http://localhost:9090 || exit 1"
-      interval: 1m30s
+      test: wget --no-verbose --tries=1 --spider http://localhost:9090 || exit 1
+      interval: 1m0s
       timeout: 10s
       retries: 3
