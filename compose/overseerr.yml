@@ -20,8 +20,8 @@ services:
       - 33200:5055/tcp
     volumes:
       - /opt/overseerr:/app/config:rw
-#    healthcheck:
-#      test: "curl --fail http://localhost:5055 || exit 1"
+#    healthcheck:#NO-CURL-AVAILABLE
+#      test: "curl --fail http://localhost:5055/login || exit 1"
 #      interval: 1m30s
 #      timeout: 10s
 #      retries: 3
