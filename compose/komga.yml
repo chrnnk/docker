@@ -5,29 +5,22 @@ networks:
     name: custom-bridge
     driver: bridge
 
-x-common: &common
-  networks:
-    - default
-  security_opt:
-    - no-new-privileges:true
-  restart: unless-stopped #no, always
-
 services:
   komga:
     container_name: komga
     image: gotson/komga
     user: ${PUID}:${PGID}
-    << : *common
+    restart: unless-stopped #no, always
     environment:
       - TZ=${TZ}
     ports:
       - 28100:8080/tcp
     volumes:
-      - $MEDIADIR/comics/:/comics:rw,slave
-      - $MEDIADIR/books/:/books:rw,slave
-      - $APPDATA/komga:/config:rw
+      - /mnt/truenas/comics/:/comics:rw,slave
+      - /mnt/truenas/books/:/books:rw,slave
+      - /opt/komga:/config:rw
     healthcheck:
       test: "curl --fail http://localhost:8080 || exit 1"
-      interval: 1m30s
+      interval: 1m50s
       timeout: 10s
       retries: 3
