@@ -19,3 +19,8 @@ services:
     privileged: true
     security_opt:
       - label=disable
+    healthcheck:
+      test: "curl --fail https://localhost:443 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
