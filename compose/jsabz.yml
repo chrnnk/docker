@@ -1,0 +1,25 @@
+version: "3.6"
+networks:
+  default:
+    external: true
+    name: custom-bridge
+services:
+  sabnzbd:
+    container_name: sabnzbd
+    image: lscr.io/linuxserver/sabnzbd
+    restart: unless-stopped
+    ports:
+      - 25200:8080/tcp
+    volumes:
+      - /mnt/user/appdata/sabnzbd:/config
+      - /mnt/user/data:/data
+    environment:
+      - PUID=99
+      - PGID=100
+      - TZ=America/New_York
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sabnzbd
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
