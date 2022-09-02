@@ -5,6 +5,11 @@
 docker ps
 ```
 
+#### Show docker stats, cpu mem net storage
+```sh
+docker stats
+```
+
 #### Stop all containers
 ```sh
 docker stop $(docker ps -q)
