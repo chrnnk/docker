@@ -8,7 +8,7 @@ networks:
 services:
   overseerr:
     container_name: overseerr
-    image: sctx/overseerr:latest
+    image: lscr.io/linuxserver/overseerr:latest
     networks:
       - default
     dns:
@@ -16,16 +16,17 @@ services:
       - 1.0.0.1
     security_opt:
       - no-new-privileges:true
-    restart: unless-stopped #no, always
+    restart: unless-stopped
     environment:
-      - TZ=${TZ}
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
     ports:
       - 33200:5055/tcp
     volumes:
       - /opt/overseerr:/app/config:rw
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:5055 || exit 1
-      # test: [ "CMD", "wget", "http://localhost:5055" ]
       interval: 1m30s
       timeout: 10s
       retries: 3
