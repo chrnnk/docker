@@ -13,13 +13,15 @@ services:
     ports:
       - 25200:8080/tcp
     volumes:
-      - /mnt/truenas:/media:rw,slave
+      - /mnt/synology/downloads/usenet:/media/downloads/usenet:rw,slave
       - /opt/sabnzbd:/config:rw
     environment:
       - TZ=${TZ}
       - UID=${UID}
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:sabnzbd
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:8080 || exit 1"
       interval: 1m30s

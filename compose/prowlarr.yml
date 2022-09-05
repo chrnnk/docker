@@ -20,6 +20,8 @@ services:
       - GID=${GID}
       - DOCKER_MODS=ghcr.io/gilbn/theme.park:prowlarr
       - TP_THEME=trueblack
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:9696 || exit 1"
       interval: 1m30s

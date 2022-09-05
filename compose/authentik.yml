@@ -23,9 +23,13 @@ services:
       - POSTGRES_DB=${PG_DB:-authentik}
     env_file:
       - .env
+    security_opt:
+      - no-new-privileges:true
   redis:
     image: redis:alpine
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
       start_period: 20s
@@ -49,6 +53,8 @@ services:
     ports:
       - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
       - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
+    security_opt:
+      - no-new-privileges:true
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.7.2}
     restart: unless-stopped
@@ -68,6 +74,8 @@ services:
       - geoip:/geoip
     env_file:
       - .env
+    security_opt:
+      - no-new-privileges:true
   geoipupdate:
     image: "maxmindinc/geoipupdate:latest"
     volumes:
@@ -75,6 +83,8 @@ services:
     environment:
       GEOIPUPDATE_EDITION_IDS: "GeoLite2-City"
       GEOIPUPDATE_FREQUENCY: "8"
+    security_opt:
+      - no-new-privileges:true
 volumes:
   database:
     driver: local

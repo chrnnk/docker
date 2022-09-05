@@ -19,6 +19,8 @@ services:
       - /mnt/truenas/comics/:/comics:rw,slave
       - /mnt/truenas/books/:/books:rw,slave
       - /opt/komga:/config:rw
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:8080 || exit 1"
       interval: 1m50s

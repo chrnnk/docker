@@ -18,6 +18,8 @@ services:
       - GID=${GID}
     ports:
       - 24100:8181
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:8181 || exit 1"
       interval: 1m30s
