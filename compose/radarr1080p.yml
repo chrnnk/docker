@@ -13,7 +13,7 @@ services:
     ports:
       - 26200:7878/tcp
     volumes:
-      - /mnt/truenas:/media:rw,slave
+      - /mnt/synology/movies:/media/movies:rw,slave
       - /mnt/synology/downloads:/media/downloads:rw,slave
       - /opt/radarr1080p:/config:rw
     environment:

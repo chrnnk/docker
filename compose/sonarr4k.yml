@@ -13,7 +13,7 @@ services:
     ports:
       - 26101:8989/tcp
     volumes:
-      - /mnt/truenas/tv:/media/tv:rw,slave
+      - /mnt/synology/tv:/media/tv:rw,slave
       - /mnt/synology/downloads:/media/downloads:rw,slave
       - /opt/sonarr4k:/config:rw
     environment:
