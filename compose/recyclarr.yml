@@ -10,11 +10,9 @@ services:
     container_name: recyclarr
     image: ghcr.io/recyclarr/recyclarr
     restart: unless-stopped
+    init: true
+    user: 1000:1000
     volumes:
       - /opt/recyclarr:/config:rw
-    security_opt:
-      - no-new-privileges:true
     environment:
       - TZ=${TZ}
-      - UID=${PUID}
-      - GID=${PGID}
