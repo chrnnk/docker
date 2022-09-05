@@ -1,0 +1,66 @@
+version: "3.6"
+services:
+  binhex-qbittorrentvpn:
+    command:
+      - /bin/bash
+      - /usr/local/bin/init.sh
+    container_name: binhex-qbittorrentvpn
+    entrypoint:
+      - /usr/bin/dumb-init
+      - --
+    environment:
+      - VPN_PASS=R3AW8iGDYy
+      - STRICT_PORT_FORWARD=yes
+      - DEBUG=false
+      - PGID=100
+      - HOST_CONTAINERNAME=binhex-qbittorrentvpn
+      - VPN_USER=p3094652
+      - ENABLE_PRIVOXY=no
+      - NAME_SERVERS=84.200.69.80,37.235.1.174,1.1.1.1,37.235.1.177,84.200.70.40,1.0.0.1
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - VPN_ENABLED=no
+      - VPN_OPTIONS=
+      - PUID=99
+      - TZ=America/New_York
+      - VPN_CLIENT=openvpn
+      - LAN_NETWORK=192.168.0.0/24
+      - VPN_INPUT_PORTS=
+      - VPN_OUTPUT_PORTS=
+      - UMASK=000
+      - VPN_PROV=pia
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/home/nobody
+      - TERM=xterm
+      - LANG=en_GB.UTF-8
+    hostname: a7359f55d0d0
+    image: binhex/arch-qbittorrentvpn
+    ipc: private
+    labels:
+      net.unraid.docker.icon: https://raw.githubusercontent.com/binhex/docker-templates/master/binhex/images/qbittorrent-icon.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: http://[IP]:[PORT:8080]/
+      org.opencontainers.image.authors: = binhex
+      org.opencontainers.image.source: '= https://github.com/binhex/arch-qbittorrentvpn'
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 6881:6881/tcp
+      - 6881:6881/udp
+      - 8081:8080/tcp
+      - 8118:8118/tcp
+    privileged: true
+    security_opt:
+      - label=disable
+    volumes:
+      - /mnt/user/data:/data
+      - /mnt/user/appdata/binhex-qbittorrentvpn:/config
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

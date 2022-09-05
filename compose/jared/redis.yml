@@ -1,0 +1,50 @@
+version: "3.6"
+services:
+  redis:
+    command:
+      - /opt/bitnami/scripts/redis/run.sh
+    container_name: redis
+    entrypoint:
+      - /opt/bitnami/scripts/redis/entrypoint.sh
+    environment:
+      - HOST_CONTAINERNAME=redis
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=vKZc6!eV3D87upsQdcQn!hE9
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - PATH=/opt/bitnami/common/bin:/opt/bitnami/redis/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/
+      - OS_ARCH=amd64
+      - OS_FLAVOUR=debian-11
+      - OS_NAME=linux
+      - APP_VERSION=7.0.4
+      - BITNAMI_APP_NAME=redis
+    hostname: 4a0b01738a22
+    image: bitnami/redis:latest
+    ipc: private
+    labels:
+      net.unraid.docker.icon: https://raw.githubusercontent.com/A75G/docker-templates/master/templates/icons/redis.png
+      net.unraid.docker.managed: dockerman
+      org.opencontainers.image.authors: https://bitnami.com/contact
+      org.opencontainers.image.description: Application packaged by Bitnami
+      org.opencontainers.image.ref.name: 7.0.4-debian-11-r19
+      org.opencontainers.image.source: https://github.com/bitnami/containers/tree/main/bitnami/redis
+      org.opencontainers.image.title: redis
+      org.opencontainers.image.vendor: 'VMware, Inc.'
+      org.opencontainers.image.version: 7.0.4
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 21100:21100/tcp
+      - 6379:6379/tcp
+    user: 1001
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

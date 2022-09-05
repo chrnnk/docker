@@ -1,0 +1,68 @@
+version: "3.6"
+services:
+  unifi-controller:
+    container_name: unifi-controller
+    entrypoint:
+      - /init
+    environment:
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - TCP_PORT_8443=8443
+      - TCP_PORT_8880=8880
+      - UMASK=022
+      - UDP_PORT_3478=3478
+      - UDP_PORT_10001=10001
+      - TCP_PORT_8080=8080
+      - UDP_PORT_1900=1900
+      - MEM_STARTUP=1024
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=unifi-controller
+      - MEM_LIMIT=1024
+      - PGID=100
+      - TCP_PORT_8843=8843
+      - TCP_PORT_6789=6789
+      - UDP_PORT_5514=5514
+      - PUID=99
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/root
+      - LANGUAGE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - TERM=xterm
+      - S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+    expose:
+      - 8080/tcp
+      - 8443/tcp
+      - 8843/tcp
+      - 8880/tcp
+    hostname: Serenity-Unraid
+    image: lscr.io/linuxserver/unifi-controller
+    ipc: private
+    labels:
+      build_version: 'Linuxserver.io version:- 7.2.92-ls159 Build-date:- 2022-08-09T13:09:37+02:00'
+      maintainer: aptalca
+      net.unraid.docker.icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/unifi-controller-logo.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: https://[IP]:[PORT:8443]
+      org.opencontainers.image.authors: linuxserver.io
+      org.opencontainers.image.created: '2022-08-09T13:09:37+02:00'
+      org.opencontainers.image.description: "The [Unifi-controller](https://www.ubnt.com/enterprise/#unifi)\
+        \ software is a powerful, enterprise wireless software engine ideal for high-density\
+        \ client deployments requiring low latency and high uptime performance."
+      org.opencontainers.image.documentation: https://docs.linuxserver.io/images/docker-unifi-controller
+      org.opencontainers.image.licenses: GPL-3.0-only
+      org.opencontainers.image.ref.name: a4373149906c7e4102d9d1b92191110ea95e05d1
+      org.opencontainers.image.revision: a4373149906c7e4102d9d1b92191110ea95e05d1
+      org.opencontainers.image.source: https://github.com/linuxserver/docker-unifi-controller
+      org.opencontainers.image.title: Unifi-controller
+      org.opencontainers.image.url: https://github.com/linuxserver/docker-unifi-controller/packages
+      org.opencontainers.image.vendor: linuxserver.io
+      org.opencontainers.image.version: 7.2.92-ls159
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    network_mode: host
+    volumes:
+      - /mnt/user/appdata/unifi-controller:/config
+    working_dir: /usr/lib/unifi

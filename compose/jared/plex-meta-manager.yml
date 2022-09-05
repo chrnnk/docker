@@ -1,0 +1,46 @@
+version: "3.6"
+services:
+  plex-meta-manager:
+    container_name: plex-meta-manager
+    entrypoint:
+      - /tini
+      - -s
+      - python3
+      - plex_meta_manager.py
+      - --
+    environment:
+      - PMM_DIVIDER==
+      - PMM_WIDTH=200
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=plex-meta-manager
+      - PMM_TIME=6:00
+      - PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANG=C.UTF-8
+      - GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D
+      - PYTHON_VERSION=3.10.6
+      - PYTHON_PIP_VERSION=22.2.1
+      - PYTHON_SETUPTOOLS_VERSION=63.2.0
+      - PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/aeca83c7ba7f9cdfd681103c4dcbf0214f6d742e/public/get-pip.py
+      - PYTHON_GET_PIP_SHA256=d0b5909f3ab32dae9d115aa68a4b763529823ad5589c56af15cf816fca2773d6
+      - TINI_VERSION=v0.19.0
+    hostname: 1a6b5fbe5f72
+    image: meisnate12/plex-meta-manager
+    ipc: private
+    labels:
+      net.unraid.docker.icon: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager/master/docs/_static/favicon.png
+      net.unraid.docker.managed: dockerman
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    volumes:
+      - /mnt/user/appdata/plex-meta-manager:/config
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

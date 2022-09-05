@@ -1,0 +1,69 @@
+version: "3.6"
+services:
+  sabnzbd:
+    container_name: sabnzbd
+    entrypoint:
+      - /init
+    environment:
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=sabnzbd
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sabnzbd
+      - PUID=99
+      - PGID=100
+      - UMASK=022
+      - TZ=America/New_York
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - 'PS1=$(whoami)@$(hostname):$(pwd)\$ '
+      - HOME=/config
+      - TERM=xterm
+      - S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+      - PYTHONIOENCODING=utf-8
+    hostname: dbd41996a68e
+    image: lscr.io/linuxserver/sabnzbd
+    ipc: private
+    labels:
+      build_version: 'Linuxserver.io version:- 3.6.1-ls76 Build-date:- 2022-08-26T12:12:21+02:00'
+      maintainer: thespad
+      net.unraid.docker.icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sabnzbd-logo.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: http://[IP]:[PORT:8080]
+      org.opencontainers.image.authors: linuxserver.io
+      org.opencontainers.image.created: '2022-08-26T12:12:21+02:00'
+      org.opencontainers.image.description: "[Sabnzbd](http://sabnzbd.org/) makes\
+        \ Usenet as simple and streamlined as possible by automating everything we\
+        \ can. All you have to do is add an .nzb. SABnzbd takes over from there, where\
+        \ it will be automatically downloaded, verified, repaired, extracted and filed\
+        \ away with zero human interaction."
+      org.opencontainers.image.documentation: https://docs.linuxserver.io/images/docker-sabnzbd
+      org.opencontainers.image.licenses: GPL-3.0-only
+      org.opencontainers.image.ref.name: 3e154f22953d8420ef5bb54961f443ba51b95ae1
+      org.opencontainers.image.revision: 3e154f22953d8420ef5bb54961f443ba51b95ae1
+      org.opencontainers.image.source: https://github.com/linuxserver/docker-sabnzbd
+      org.opencontainers.image.title: Sabnzbd
+      org.opencontainers.image.url: https://github.com/linuxserver/docker-sabnzbd/packages
+      org.opencontainers.image.vendor: linuxserver.io
+      org.opencontainers.image.version: 3.6.1-ls76
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 25200:8080/tcp
+    volumes:
+      - /mnt/user/appdata/sabnzbd:/config
+      - /mnt/user/data:/data
+      - 2dd8462b1439f974b17892c7c323c6a259a4925530861b3aa6d495a0797fb2fc::/downloads:rw
+      - 6fa93239e3bdff3f74e4ef759254e97f7492248d43ceea4c835ebda2ec58ddde::/incomplete-downloads:rw
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge
+volumes:
+  2dd8462b1439f974b17892c7c323c6a259a4925530861b3aa6d495a0797fb2fc:
+    external: true
+  6fa93239e3bdff3f74e4ef759254e97f7492248d43ceea4c835ebda2ec58ddde:
+    external: true

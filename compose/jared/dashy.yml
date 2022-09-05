@@ -1,0 +1,58 @@
+version: "3.6"
+services:
+  dashy:
+    command:
+      - yarn
+      - build-and-start
+    container_name: dashy
+    entrypoint:
+      - /sbin/tini
+      - --
+    environment:
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=dashy
+      - UID=99
+      - GID=100
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - NODE_VERSION=16.13.2
+      - YARN_VERSION=1.22.15
+      - PORT=80
+      - DIRECTORY=/app
+      - IS_DOCKER=true
+    hostname: b247d751c0ec
+    image: lissy93/dashy:latest
+    ipc: private
+    labels:
+      maintainer: Lissy93
+      net.unraid.docker.icon: https://raw.githubusercontent.com/A75G/docker-templates/master/templates/icons/dashy.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: http://[IP]:[PORT:80]/
+      org.opencontainers.image.authors: Alicia Sykes
+      org.opencontainers.image.created: '2022-08-02T15:54:11.696Z'
+      org.opencontainers.image.description: A self-hosted startpage for your server
+      org.opencontainers.image.documentation: https://dashy.to/docs
+      org.opencontainers.image.licenses: MIT
+      org.opencontainers.image.revision: 07a81eb0752ae9ae5930bc4f1c9c8de7643fc8b6
+      org.opencontainers.image.source: https://github.com/Lissy93/dashy
+      org.opencontainers.image.title: Dashy
+      org.opencontainers.image.url: https://github.com/Lissy93/dashy
+      org.opencontainers.image.version: 2.1.1
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 8888:80/tcp
+    volumes:
+      - /mnt/user/appdata/dashy/conf.yml:/app/public/conf.yml
+      - /mnt/user/appdata/dashy/icons:/app/public/item-icons
+    working_dir: /app
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

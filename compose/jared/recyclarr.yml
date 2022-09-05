@@ -1,0 +1,45 @@
+version: "3.6"
+services:
+  recyclarr:
+    container_name: recyclarr
+    entrypoint:
+      - /entrypoint.sh
+    environment:
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=recyclarr
+      - CRON_SCHEDULE=@daily
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/app/recyclarr
+      - RECYCLARR_APP_DATA=/config
+      - DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/.net
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
+    hostname: 0829023f3a78
+    image: ghcr.io/recyclarr/recyclarr:latest
+    ipc: private
+    labels:
+      net.unraid.docker.icon: https://raw.githubusercontent.com/recyclarr/recyclarr/master/ci/notify/trash-icon.png
+      net.unraid.docker.managed: dockerman
+      org.opencontainers.image.created: '2022-08-26T17:22:36.396Z'
+      org.opencontainers.image.description: Automatically sync TRaSH guides to your
+        Sonarr and Radarr instances.
+      org.opencontainers.image.licenses: MIT
+      org.opencontainers.image.revision: 75e652f70249cecf9ce985065fab38e5c46082c4
+      org.opencontainers.image.source: https://github.com/recyclarr/recyclarr
+      org.opencontainers.image.title: recyclarr
+      org.opencontainers.image.url: https://github.com/recyclarr/recyclarr
+      org.opencontainers.image.version: 2.4.1
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    user: 1000:1000
+    volumes:
+      - /mnt/user/appdata/recyclarr:/config
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

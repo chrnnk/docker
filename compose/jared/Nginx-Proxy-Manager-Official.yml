@@ -1,0 +1,61 @@
+version: "3.6"
+services:
+  Nginx-Proxy-Manager-Official:
+    container_name: Nginx-Proxy-Manager-Official
+    entrypoint:
+      - /init
+    environment:
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - HOST_CONTAINERNAME=Nginx-Proxy-Manager-Official
+      - DB_SQLITE_FILE=/data/database.sqlite
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+      - OPENRESTY_VERSION=1.19.9.1
+      - CROWDSEC_OPENRESTY_BOUNCER_VERSION=0.1.7
+      - CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - SUPPRESS_NO_CONFIG_WARNING=1
+      - S6_FIX_ATTRS_HIDDEN=1
+      - S6_BEHAVIOUR_IF_STAGE2_FAILS=1
+      - NODE_ENV=production
+      - NPM_BUILD_VERSION=2.9.18
+      - NPM_BUILD_COMMIT=cce73be
+      - 'NPM_BUILD_DATE=2022-03-31 05:46:34 UTC'
+    hostname: 9ac40eafb9be
+    image: jc21/nginx-proxy-manager
+    ipc: private
+    labels:
+      maintainer: Jamie Curnow <jc@jc21.com>
+      net.unraid.docker.icon: https://nginxproxymanager.com/icon.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: http://[IP]:[PORT:81]
+      org.label-schema.cmd: 'docker run --rm -ti jc21/nginx-proxy-manager:latest'
+      org.label-schema.description: 'Docker container for managing Nginx proxy hosts
+        with a simple, powerful interface '
+      org.label-schema.license: MIT
+      org.label-schema.name: nginx-proxy-manager
+      org.label-schema.schema-version: 1.0
+      org.label-schema.url: https://github.com/jc21/nginx-proxy-manager
+      org.label-schema.vcs-url: https://github.com/jc21/nginx-proxy-manager.git
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 3000:3000/tcp
+      - 21443:443/tcp
+      - 21080:80/tcp
+      - 21081:81/tcp
+    volumes:
+      - /mnt/user/appdata/Nginx-Proxy-Manager-Official/data:/data
+      - /mnt/user/appdata/Nginx-Proxy-Manager-Official/letsencrypt:/etc/letsencrypt
+      - /tmp/Nginx-Proxy-Manager-Official/var/log:/var/log
+    working_dir: /app
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge

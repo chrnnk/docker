@@ -1,0 +1,54 @@
+version: "3.6"
+services:
+  prowlarr:
+    container_name: prowlarr
+    entrypoint:
+      - /init
+    environment:
+      - HOST_CONTAINERNAME=prowlarr
+      - PUID=99
+      - PGID=100
+      - UMASK=002
+      - TZ=America/New_York
+      - HOST_OS=Unraid
+      - HOST_HOSTNAME=Serenity-Unraid
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - APP_DIR=/app
+      - CONFIG_DIR=/config
+      - ARGS=
+      - XDG_CONFIG_HOME=/config/.config
+      - XDG_CACHE_HOME=/config/.cache
+      - XDG_DATA_HOME=/config/.local/share
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+      - BUILD_ARCHITECTURE=linux-amd64
+    hostname: ab680aa6fa8e
+    image: cr.hotio.dev/hotio/prowlarr:testing
+    ipc: private
+    labels:
+      net.unraid.docker.icon: https://hotio.dev/webhook-avatars/prowlarr.png
+      net.unraid.docker.managed: dockerman
+      net.unraid.docker.webui: http://[IP]:[PORT:9696]
+      org.opencontainers.image.created: '2022-08-16T03:47:03Z'
+      org.opencontainers.image.revision: fb65b7c90a6cc12b03982d34ce1dd0d1972d63a1
+      org.opencontainers.image.source: https://github.com/hotio/prowlarr/tree/testing
+      org.opencontainers.image.title: hotio/prowlarr:testing
+      org.opencontainers.image.url: https://github.com/hotio/prowlarr/blob/master/README.md
+      org.opencontainers.image.vendor: hotio
+      org.opencontainers.image.version: 0.4.4.1947
+    logging:
+      driver: json-file
+      options:
+        max-file: 1
+        max-size: 50m
+    networks:
+      - custom-bridge
+    ports:
+      - 9696:9696/tcp
+    volumes:
+      - /mnt/user/appdata/prowlarr:/config
+networks:
+  custom-bridge:
+    external: true
+    name: custom-bridge
