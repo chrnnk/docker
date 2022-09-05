@@ -12,6 +12,8 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/recyclarr:/config:rw
+    security_opt:
+      - no-new-privileges:true
     environment:
       - TZ=${TZ}
       - UID=${UID}

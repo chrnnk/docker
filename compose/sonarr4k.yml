@@ -24,6 +24,8 @@ services:
       - TP_ADDON=sonarr-4k-logo
       - TP_THEME=trueblack
       - TP_COMMUNITY_THEME=true
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:8989 || exit 1"
       interval: 1m30s

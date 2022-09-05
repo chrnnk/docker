@@ -24,6 +24,8 @@ services:
       - TP_ADDON=radarr-4k-logo
       - TP_THEME=trueblack
       - TP_COMMUNITY_THEME=true
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:7878 || exit 1"
       interval: 1m30s
