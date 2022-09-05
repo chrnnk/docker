@@ -10,14 +10,14 @@ services:
     container_name: komga
     image: gotson/komga
     user: ${PUID}:${PGID}
-    restart: unless-stopped #no, always
+    restart: unless-stopped
     environment:
       - TZ=${TZ}
     ports:
       - 28100:8080/tcp
     volumes:
-      - /mnt/truenas/comics/:/comics:rw,slave
-      - /mnt/truenas/books/:/books:rw,slave
+      - /mnt/synology/comics/:/comics:rw,slave
+      - /mnt/synology/books/:/books:rw,slave
       - /opt/komga:/config:rw
     security_opt:
       - no-new-privileges:true

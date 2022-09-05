@@ -16,7 +16,7 @@ services:
       - 22181:8080/tcp
     volumes:
       - /opt/traefik:/etc/traefik:rw
-      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - TZ=${TZ}
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
