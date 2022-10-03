@@ -18,7 +18,7 @@ docker stats
 ```
 docker system df
 docker ps --size
-
+sudo du -h $(docker inspect --format='{{.LogPath}}' $(docker ps -qa)) | sort -hr
 ````
 
 #### Stop all containers
