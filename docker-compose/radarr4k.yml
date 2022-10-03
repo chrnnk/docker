@@ -13,8 +13,8 @@ services:
     ports:
       - 26201:7878/tcp
     volumes:
-      - /mnt/synology/movies/4k:/media/movies/4k:rw,slave
-      - /mnt/synology/downloads:/media/downloads:rw,slave
+      - /mnt/nas-media/movies/4k:/media/movies/4k:rw,slave
+      - /mnt/nas-downloads:/media/downloads:rw,slave
       - /opt/radarr4k:/config:rw
     environment:
       - TZ=${TZ}
