@@ -14,6 +14,13 @@ docker ps
 docker stats
 ```
 
+#### More docker size commands
+```
+docker system df
+docker ps --size
+
+````
+
 #### Stop all containers
 ```sh
 docker stop $(docker ps -q)
