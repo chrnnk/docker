@@ -13,7 +13,7 @@ services:
     ports:
       - 25200:8080/tcp
     volumes:
-      - /mnt/synology/downloads/usenet:/media/downloads/usenet:rw,slave
+      - /mnt/nas-downloads/usenet:/media/downloads/usenet:rw,slave
       - /opt/sabnzbd:/config:rw
     environment:
       - TZ=${TZ}

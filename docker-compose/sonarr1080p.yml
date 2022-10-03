@@ -13,8 +13,8 @@ services:
     ports:
       - 26100:8989/tcp
     volumes:
-      - /mnt/truenas/tv/1080p:/media/tv/1080p:rw,slave
-      - /mnt/synology/downloads:/media/downloads:rw,slave
+      - /mnt/nas-media/tv/1080p:/media/tv/1080p:rw,slave
+      - /mnt/nas-downloads:/media/downloads:rw,slave
       - /opt/sonarr1080p:/config:rw
     environment:
       - TZ=${TZ}
