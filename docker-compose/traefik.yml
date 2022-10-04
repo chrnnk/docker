@@ -26,6 +26,10 @@ services:
       traefik.http.routers.api.entryPoints: https
       traefik.http.routers.api.rule: Host(`traefik.chrxnn.com`)
       traefik.http.routers.api.service: api@internal
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "250m"
     command:
       #- "--log.level=DEBUG"
       - "--api.insecure=true"

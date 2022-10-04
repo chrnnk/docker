@@ -40,6 +40,10 @@ services:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.7.2}
     restart: unless-stopped
     command: server
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "250m"
     environment:
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
