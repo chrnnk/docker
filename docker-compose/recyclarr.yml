@@ -15,4 +15,4 @@ services:
     volumes:
       - /opt/recyclarr:/config:rw
     environment:
-      - TZ=${TZ}
+      - TZ=America/New_York
