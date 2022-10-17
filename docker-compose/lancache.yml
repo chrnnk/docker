@@ -15,7 +15,6 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=America/New_York
-    env_file: monolithic.env
     restart: unless-stopped
     ports:
       - ${DNS_BIND_IP}:53:53/udp
@@ -29,14 +28,13 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=America/New_York
-    env_file: monolithic.env
     restart: unless-stopped
     ports:
-      - 80:80/tcp
-      - 443:443/tcp
+      - 49480:80/tcp
+      - 49443:443/tcp
     volumes:
-      - ${CACHE_ROOT}/cache:/data/cache
-      - ${CACHE_ROOT}/logs:/data/logs
+      - /mnt/nas-media/games/Steam:/data/cache
+      - /opt/lancache:/data/logs
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost || exit 1
       interval: 1m30s
