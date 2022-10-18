@@ -37,9 +37,10 @@ docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pu
 ```
 
 
-#### Prune old images
+#### Docker cleanup
 ```sh
 docker image prune -a
+docker system prune --volumes
 ```
 
 ## Docker containers
