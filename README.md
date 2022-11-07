@@ -8,7 +8,11 @@ https://github.com/chrxnn/linux
 ```sh
 docker ps
 ```
-
+#### Basic commands
+Available commands: start stop restart pause logs
+```sh
+docker [command] [containername]
+```
 #### Show docker stats, cpu mem net storage
 ```sh
 docker stats
@@ -36,29 +40,17 @@ docker restart $(docker ps -aq)
 docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pull 
 ```
 
-
 #### Docker cleanup
 ```sh
 docker image prune -a
 docker system prune --volumes
 ```
 
-## Docker containers
-
-#### Basic commands
-
-```sh
-docker [command] [containername]
-```
-Available commands: start stop restart pause logs
-
 #### Print all container names:
-
 ```sh
 docker ps --format ‘{{.Names}}’
 ```
 #### Print all container images:
-
 ```sh
 docker ps --format ‘{{.Image}}’
 ```
