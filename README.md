@@ -1,56 +1,50 @@
-## Useful Docker commands
+# Useful Docker commands
 Collection of commands/scripts for Docker. Listed below are commands I frequently use but often forget the exact syntax for.
 
-#### Link to Linux
+### Link to Linux
 https://github.com/chrxnn/linux
 
-#### Show running
+### Show running
 ```sh
 docker ps
 ```
-#### Basic commands
+### Basic commands
 Available commands: start stop restart pause logs
 ```sh
 docker [command] [containername]
 ```
-#### Show docker stats, cpu mem net storage
+### Show docker stats, cpu mem net storage
 ```sh
 docker stats
 ```
-
-#### More docker size commands
+### More docker size commands
 ```
 docker system df
 docker ps --size
 sudo du -h $(docker inspect --format='{{.LogPath}}' $(docker ps -qa)) | sort -hr
 ````
-
-#### Stop all containers
+### Stop all containers
 ```sh
 docker stop $(docker ps -q)
 ```
-
-#### Restart all containers
+### Restart all containers
 ```sh
 docker restart $(docker ps -aq)
 ```
-
-#### Pull all new images
+### Pull all new images
 ```sh
 docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pull 
 ```
-
-#### Docker cleanup
+### Docker cleanup
 ```sh
 docker image prune -a
 docker system prune --volumes
 ```
-
-#### Print all container names:
+### Print all container names:
 ```sh
 docker ps --format ‘{{.Names}}’
 ```
-#### Print all container images:
+### Print all container images:
 ```sh
 docker ps --format ‘{{.Image}}’
 ```
