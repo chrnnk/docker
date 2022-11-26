@@ -48,3 +48,7 @@ docker ps --format ‘{{.Names}}’
 ```sh
 docker ps --format ‘{{.Image}}’
 ```
+### Convert running docker to compose
+```
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/red5d/docker-autocompose CONTAINERNAME >> CONTAINERNAME.yml
+```
