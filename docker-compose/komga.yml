@@ -16,8 +16,8 @@ services:
     ports:
       - 28100:8080/tcp
     volumes:
-      - /mnt/synology/comics/:/comics:rw,slave
-      - /mnt/synology/books/:/books:rw,slave
+      - /mnt/media/comics/:/comics:rw,slave
+      - /mnt/media/books/:/books:rw,slave
       - /opt/komga:/config:rw
     security_opt:
       - no-new-privileges:true
