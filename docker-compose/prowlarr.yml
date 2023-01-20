@@ -18,7 +18,7 @@ services:
       - TP_COMMUNITY_THEME=true
       - TP_THEME=trueblack
     ports:
-      - 25100:9696/tcp
+      - 26800:9696/tcp
     volumes:
       - $APPDATA/prowlarr:/config:rw
     security_opt:
