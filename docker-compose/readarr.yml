@@ -1,0 +1,44 @@
+version: "3.9"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+x-environment: &default-environment
+  environment:
+    - TZ=$TZ
+    - PUID=$PUID
+    - PGID=$PGID
+    - DOCKER_MODS=ghcr.io/gilbn/theme.park:readarr-books
+    - TP_THEME=trueblack
+    - TP_COMMUNITY_THEME=true
+
+x-settings: &settings
+  image: lscr.io/linuxserver/readarr:latest
+  restart: unless-stopped  
+  security_opt:
+    - no-new-privileges:true
+  healthcheck:
+    test: "curl --fail http://localhost:8787 || exit 1"
+    interval: 60s
+    timeout: 10s
+    retries: 2
+
+services:
+  readarr-books:
+    container_name: readarr-books
+    ports:
+     - 26400:8787/tcp
+    volumes:
+      - $MEDIADIR/books:/mnt/media/books:rw,slave
+      - $APPDATA/readarr-books:/config
+    <<: [*default-environment, *settings]
+  readarr-books:
+    container_name: readarr-audiobooks
+    ports:
+     - 26400:8787/tcp
+    volumes:
+      - $MEDIADIR/audiobooks:/mnt/media/audiobooks:rw,slave
+      - $APPDATA/readarr-audiobooks:/config
+    <<: [*default-environment, *settings]
