@@ -25,6 +25,6 @@ services:
       - no-new-privileges:true
     healthcheck:
       test: "curl --fail http://localhost:9696 || exit 1"
-      interval: 1m30s
+      interval: 60s
       timeout: 10s
       retries: 2
