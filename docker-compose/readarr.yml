@@ -15,7 +15,7 @@ x-environment: &default-environment
     - TP_COMMUNITY_THEME=true
 
 x-settings: &settings
-  image: lscr.io/linuxserver/readarr:latest
+  image: lscr.io/linuxserver/readarr:develop
   restart: unless-stopped  
   security_opt:
     - no-new-privileges:true
@@ -34,10 +34,10 @@ services:
       - $MEDIADIR/books:/mnt/media/books:rw,slave
       - $APPDATA/readarr-books:/config
     <<: [*default-environment, *settings]
-  readarr-books:
+  readarr-audiobooks:
     container_name: readarr-audiobooks
     ports:
-     - 26400:8787/tcp
+     - 26401:8787/tcp
     volumes:
       - $MEDIADIR/audiobooks:/mnt/media/audiobooks:rw,slave
       - $APPDATA/readarr-audiobooks:/config
