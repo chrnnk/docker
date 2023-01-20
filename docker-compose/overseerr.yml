@@ -9,20 +9,15 @@ services:
   overseerr:
     container_name: overseerr
     image: lscr.io/linuxserver/overseerr:latest
-    networks:
-      - default
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
     restart: unless-stopped
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
+      - TZ=$TZ
+      - UID=$PUID
+      - GID=$PGID
     ports:
       - 33200:5055/tcp
     volumes:
-      - /opt/overseerr:/config:rw
+      - $APPDATA/overseerr:/config:rw
     security_opt:
       - no-new-privileges:true
     healthcheck:
@@ -30,3 +25,6 @@ services:
       interval: 1m30s
       timeout: 10s
       retries: 3
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1

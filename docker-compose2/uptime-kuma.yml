@@ -8,17 +8,17 @@ networks:
 
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1
     container_name: uptime-kuma
+    image: louislam/uptime-kuma:1
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    volumes:
-      - $APPDATA/uptime-kuma:/app/data
-    ports:
-      - 33001:3001
     environment:
       - TZ=$TZ
+    ports:
+      - 33001:3001
+    volumes:
+      - $APPDATA/uptime-kuma:/app/data
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
       test: ['CMD', 'node', 'extra/healthcheck.js']
       interval: 60s
