@@ -15,7 +15,7 @@ services:
       - PUID=$PUID
       - PGID=$PGID
     ports:
-      - 24100:8181
+      - 26900:8181
     volumes:
       - $APPDATA/tautulli:/config
     security_opt:
