@@ -11,8 +11,8 @@ x-environment: &default-environment
     - PUID=$PUID
     - PGID=$PGID
     - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
-    - TP_THEME=trueblack
     - TP_COMMUNITY_THEME=true
+    - TP_THEME=trueblack
 
 x-settings: &settings
   image: lscr.io/linuxserver/radarr

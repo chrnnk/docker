@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 networks:
   default:
@@ -10,16 +10,17 @@ services:
     container_name: prowlarr
     image: lscr.io/linuxserver/prowlarr:develop
     restart: unless-stopped
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:prowlarr
+      - TP_COMMUNITY_THEME=true
+      - TP_THEME=trueblack
     ports:
       - 25100:9696/tcp
     volumes:
-      - /opt/prowlarr:/config:rw
-    environment:
-      - TZ=${TZ}
-      - UID=${UID}
-      - GID=${GID}
-      - DOCKER_MODS=ghcr.io/gilbn/theme.park:prowlarr
-      - TP_THEME=trueblack
+      - $APPDATA/prowlarr:/config:rw
     security_opt:
       - no-new-privileges:true
     healthcheck:
