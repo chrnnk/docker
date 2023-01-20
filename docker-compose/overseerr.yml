@@ -15,7 +15,7 @@ services:
       - UID=$PUID
       - GID=$PGID
     ports:
-      - 33200:5055/tcp
+      - 26901:5055/tcp
     volumes:
       - $APPDATA/overseerr:/config
     security_opt:
