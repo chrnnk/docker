@@ -1,0 +1,79 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  radarr1080p:
+    container_name: radarr1080p
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 26100:8989/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies:rw,slave
+      - $APPDATA/radarr1080p:/config:rw
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: "curl --fail http://localhost:8989 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  radarr4k:
+    container_name: radarr4k
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 26101:8989/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies:rw,slave
+      - $APPDATA/radarr4k:/config:rw
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: "curl --fail http://localhost:8989 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  radarranime:
+    container_name: radarranime
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 26102:8989/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies:rw,slave
+      - $APPDATA/radarranime:/config:rw
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: "curl --fail http://localhost:8989 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
