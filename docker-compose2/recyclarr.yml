@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 networks:
   default:
@@ -10,9 +10,10 @@ services:
     container_name: recyclarr
     image: ghcr.io/recyclarr/recyclarr
     restart: unless-stopped
-    init: true
-    user: 1000:1000
-    volumes:
-      - /opt/recyclarr:/config:rw
     environment:
-      - TZ=America/New_York
+      - TZ=$TZ
+    volumes:
+      - $APPDATA/recyclarr:/config:rw
+    security_opt:
+      - no-new-privileges:true
+    user: $PUID:$PGID
