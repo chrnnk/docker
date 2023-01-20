@@ -1,0 +1,27 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  tautulli:
+    container_name: tautulli
+    image: ghcr.io/tautulli/tautulli
+    restart: unless-stopped
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+    ports:
+      - 24100:8181
+    volumes:
+      - $APPDATA/tautulli:/config
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: "curl --fail http://localhost:8181 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
