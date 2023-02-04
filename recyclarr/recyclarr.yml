@@ -1,8 +1,8 @@
 # https://recyclarr.dev/wiki/reference/config-reference
 sonarr:
   sonarr1080p:
-    base_url: XXXXX
-    api_key: XXXXX
+    base_url: http://docker02.chrxnn.lan:26100/
+    api_key: 38148ed7e3ce418696ba9ac5154f663e
     #quality_definition:
       #type: series
     delete_old_custom_formats: true
@@ -54,16 +54,13 @@ sonarr:
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
           - ec8fa7296b64e8cd390a1600981f3923 # Repack/Proper
           # Optional
-          - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
           - ef4963043b0987f8485bc9106f16db38 # DV (FEL)
           # DV (WEBDL) - Uncomment the next line if any devices DO NOT support Dolby Vision
           - 9b27ab6498ec0f31a3353992e19434ca # DV (WEBDL)
           # HDR10Plus Boost - Uncomment the next line if any devices DO support HDR10+
           - 0dad0a507451acddd754fe6dc3a7f5e7 # HDR10+ Boost
-          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 2016d1676f5ee13a5b7257ff86ac9a93 # SDR
-          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
           - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
           # Series Versions
           - 3a4127d8aa781b44120d907f2cd62627 # Hybrid
@@ -101,6 +98,14 @@ sonarr:
           - name: 720p
             score: -10000
       - trash_ids:
+          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
+          - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
+        quality_profiles:
+          - name: 1080p
+            score: -100
+          - name: 720p
+            score: -100
+      - trash_ids:
           - 3bc5f395426614e155e585a2f056cdf1 # Season Pack
         quality_profiles:
           - name: 1080p
@@ -109,6 +114,7 @@ sonarr:
             score: 10
       - trash_ids:
           - 82d40da2bc6923f41e14394075dd4b03 # No-RlsGroup
+          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
         quality_profiles:
           - name: 1080p
             score: -1
@@ -134,8 +140,8 @@ sonarr:
           - name: 720p
             score: 1
   sonarr4k:
-    base_url: XXXXX
-    api_key: XXXXX
+    base_url: http://docker02.chrxnn.lan:26101/
+    api_key: 4a62d5e30bb04638906c388ac1ed4259
     #quality_definition:
       #type: series
     delete_old_custom_formats: true
@@ -187,16 +193,13 @@ sonarr:
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
           - ec8fa7296b64e8cd390a1600981f3923 # Repack/Proper
           # Optional
-          - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
           - ef4963043b0987f8485bc9106f16db38 # DV (FEL)
           # DV (WEBDL) - Uncomment the next line if any devices DO NOT support Dolby Vision
           - 9b27ab6498ec0f31a3353992e19434ca # DV (WEBDL)
           # HDR10Plus Boost - Uncomment the next line if any devices DO support HDR10+
           - 0dad0a507451acddd754fe6dc3a7f5e7 # HDR10+ Boost
-          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 2016d1676f5ee13a5b7257ff86ac9a93 # SDR
-          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
           - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
           # Series Versions
           - 3a4127d8aa781b44120d907f2cd62627 # Hybrid
@@ -231,16 +234,28 @@ sonarr:
           - name: 2160p
             score: -10000
       - trash_ids:
+          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
+          - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
+        quality_profiles:
+          - name: 2160p
+            score: -100
+      - trash_ids:
           - 3bc5f395426614e155e585a2f056cdf1 # Season Pack
         quality_profiles:
           - name: 2160p
             score: 10
       - trash_ids:
           - 82d40da2bc6923f41e14394075dd4b03 # No-RlsGroup
+          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
         quality_profiles:
           - name: 2160p
             score: -1
       - trash_ids:
+          # Misc
+          - 7ba05c6e0e14e793538174c679126996 # Multi
+          - cddfb4e32db826151d97352b8e37c648 # x264
+          - c9eafd50846d299b862ca9bb6ea91950 # x265
+          # Audio
           - bd6dd5e043aa27ff4696a08d011c7d96 # 1.0 Mono
           - 834e534f103938853ffced4203b53e72 # 2.0 Stereo
           - 42cba7e38c7947a6d1d0a62580ee6d62 # 3.0 Sound
@@ -256,8 +271,8 @@ sonarr:
 radarr:
   radarr1080p:
     # Set the URL/API Key to your actual instance
-    base_url: XXXXX
-    api_key: XXXXX
+    base_url: http://docker02.chrxnn.lan:26200
+    api_key: edbbaae1f5254b3c8cb42bded11bf6f5
     #quality_definition:
       #type: movie
     delete_old_custom_formats: true
@@ -383,8 +398,8 @@ radarr:
             score: 1
   radarr4k:
     # Set the URL/API Key to your actual instance
-    base_url: XXXXX
-    api_key: XXXXX
+    base_url: http://docker02.chrxnn.lan:26201
+    api_key: a528c063db9d4feebbf6e6889d240d60
     #quality_definition:
       #type: movie
     delete_old_custom_formats: true
