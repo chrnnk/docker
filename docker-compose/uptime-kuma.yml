@@ -1,10 +1,9 @@
-# docker network create -d bridge uptime-kuma
 version: '3.3'
 
 networks:
   default:
     external: true
-    name: uptime-kuma
+    name: custom-bridge
 
 services:
   uptime-kuma:
