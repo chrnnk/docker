@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  fortianalyzer:
+    container_name: fortianalyzer
+    image: 'fortinet/fortianalyzer:latest'
+    restart: always
+    ports:
+        - '514:514'
+        - '40443:443'
+        - '4022:22'
+        - '4023:23'
+        - '8080:8080'
+        - '161:161/udp'
+    volumes:
+        - $APPDATA/fortianalyzer/var:/var
+        - $APPDATA/fortianalyzer/data:/data
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 60s
+      timeout: 10s
+      retries: 2
