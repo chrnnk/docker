@@ -4,6 +4,8 @@ services:
     container_name: fortianalyzer
     image: 'fortinet/fortianalyzer:latest'
     restart: always
+    cap_add:
+      - ALL
     ports:
         - '514:514'
         - '40443:443'
