@@ -15,7 +15,7 @@ x-environment: &default-environment
     - TP_COMMUNITY_THEME=true
 
 x-settings: &settings
-  image: lscr.io/linuxserver/sonarr
+  image: lscr.io/linuxserver/sonarr:develop
   restart: unless-stopped
   security_opt:
     - no-new-privileges:true
@@ -44,6 +44,7 @@ services:
     <<: [*default-environment, *settings]
   sonarranime:
     container_name: sonarranime
+
     ports:
       - 26102:8989/tcp
     volumes:
