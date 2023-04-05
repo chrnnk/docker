@@ -1,3 +1,4 @@
+# docker network create -d bridge uptime-kuma
 version: '3.3'
 
 networks:
