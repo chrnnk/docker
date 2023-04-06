@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+  tdarr_node:
+    container_name: tdarr_node
+    image: ghcr.io/haveagitgat/tdarr_node:latest
+    restart: unless-stopped
+    network_mode: bridge
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - UMASK_SET=002
+      - nodeID=rdu-docker03
+      - serverIP=tdarr.chrnnk.tv
+      - serverPort=8266
+    volumes:
+      - $APPDATA/tdarr_node/config:/app/configs
+      - $APPDATA/tdarr_node/logs:/app/logs
+      - /mnt/media:/media
+      - $APPDATA/tdarr_node/temp:/temp
+    devices:
+      - /dev/dri:/dev/dri
