@@ -18,5 +18,5 @@ services:
       - $APPDATA/tdarr_node/logs:/app/logs
       - $MEDIADIR:/media
       - $APPDATA/tdarr_node/temp:/temp
-    devices:
-      - /dev/dri:/dev/dri
+#    devices:
+#      - /dev/dri:/dev/dri
