@@ -11,8 +11,8 @@ services:
       - PGID=$PGID
       - UMASK_SET=002
       - nodeID=$NODEID
-      - serverIP=tdarr.chrnnk.tv
-      - serverPort=8266
+      - serverIP=tdarr.chrxnn.com
+      - serverPort=443
     volumes:
       - $APPDATA/tdarr_node/config:/app/configs
       - $APPDATA/tdarr_node/logs:/app/logs
