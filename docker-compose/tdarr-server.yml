@@ -6,10 +6,10 @@ services:
     restart: unless-stopped
     network_mode: bridge
     ports:
-      - 8265:8265 # webUI port
-      - 8266:8266 # server port
-      - 8267:8267 # Internal node port
-      - 8268:8268 # Example extra node port
+      - 8265:8265
+      - 8266:8266
+      - 8267:8267
+      - 8268:8268
     environment:
       - TZ=$TZ
       - PUID=$PUID
@@ -24,5 +24,5 @@ services:
       - $APPDATA/tdarr/server:/app/server
       - $APPDATA/tdarr/configs:/app/configs
       - $APPDATA/tdarr/logs:/app/logs
+      - $MEDIADIR/temp:/temp
       - $MEDIADIR:/mnt/media
-      - $APPDATA/tdarr_node/temp:/temp
