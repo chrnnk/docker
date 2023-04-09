@@ -18,6 +18,7 @@ services:
     volumes:
       - $MEDIADIR/comics:/comics:rw,slave
       - $MEDIADIR/books:/books:rw,slave
+      - $DOWNLOADDIR:/downloads:rw,slave
       - $APPDATA/komga:/config:rw
     security_opt:
       - no-new-privileges:true
