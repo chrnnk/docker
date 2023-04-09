@@ -11,7 +11,7 @@ services:
       - PGID=$PGID
       - UMASK_SET=002
       - nodeID=$NODEID
-      - serverIP=10.10.50.62
+      - serverIP=100.65.202.7
       - serverPort=8266
     volumes:
       - $APPDATA/tdarr_node/config:/app/configs
