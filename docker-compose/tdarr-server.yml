@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   tdarr:
-    container_name: tdarr
+    container_name: tdarr-server
     image: ghcr.io/haveagitgat/tdarr:latest
     restart: unless-stopped
     network_mode: bridge
