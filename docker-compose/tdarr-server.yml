@@ -18,7 +18,7 @@ services:
       - serverIP=10.10.50.62
       - serverPort=8266
       - webUIPort=8265
-      - internalNode=true
+      - internalNode=false
       - nodeName=docker02
     volumes:
       - $APPDATA/tdarr/server:/app/server
