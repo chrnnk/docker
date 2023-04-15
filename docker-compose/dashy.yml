@@ -20,7 +20,7 @@ services:
       - 33100:80/tcp
     volumes:
       - $APPDATA/dashy/conf.yml:/app/public/conf.yml:rw
-      - $APPICONS:/app/public/appicons:ro
+      - $APPICONS:/app/public/item-icons:ro
     security_opt:
       - no-new-privileges:true
     healthcheck:
