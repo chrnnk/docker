@@ -19,7 +19,7 @@ services:
       - serverPort=8266
       - webUIPort=8265
       - internalNode=true
-      - nodeName=docker02
+      - nodeName=xerxes-plex
     volumes:
       - $APPDATA/tdarr/server:/app/server
       - $APPDATA/tdarr/configs:/app/configs
