@@ -15,7 +15,7 @@ services:
       - PUID=$PUID
       - PGID=$PGID
       - UMASK_SET=002
-      - serverIP=10.10.50.62
+      - serverIP=10.10.0.42
       - serverPort=8266
       - webUIPort=8265
       - internalNode=true
