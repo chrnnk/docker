@@ -1,0 +1,28 @@
+version: "3.6"
+
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
+services:
+  organizr:
+    container_name: organizr
+    hostname: organizr
+    image: organizr/organizr:latest
+    restart: unless-stopped
+    ports:
+      - 33101:80
+    volumes:
+      - $APPDATA/organizr:/config
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: "curl --fail http://localhost:80 || exit 1"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
