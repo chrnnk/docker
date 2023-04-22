@@ -1,8 +1,8 @@
 # https://recyclarr.dev/wiki/reference/config-reference
 sonarr:
   sonarr1080p:
-    base_url: http://docker02.chrxnn.lan:26100/
-    api_key: 38148ed7e3ce418696ba9ac5154f663e
+    base_url: 
+    api_key: 
     #quality_definition:
       #type: series
     delete_old_custom_formats: true
@@ -85,20 +85,10 @@ sonarr:
           # Unwanted
           - 85c61753df5da1fb2aab6f2a47426b09 # BR-DISK
           - 9c11cd3f07101cdba90a2d81cf0e56b4 # LQ
-          - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
         quality_profiles:
           - name: 1080p
           - name: 720p
       - trash_ids:
-          - 15a05bc7c1a36e2b57fd628f8977e2fc # AV1
-          - 4aee45b0868229c4fbd8bad3e315f1d0 # MPEG2
-        quality_profiles:
-          - name: 1080p
-            score: -10000
-          - name: 720p
-            score: -10000
-      - trash_ids:
-          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
         quality_profiles:
           - name: 1080p
@@ -112,14 +102,6 @@ sonarr:
             score: 10
           - name: 720p
             score: 10
-      - trash_ids:
-          - 82d40da2bc6923f41e14394075dd4b03 # No-RlsGroup
-          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
-        quality_profiles:
-          - name: 1080p
-            score: -1
-          - name: 720p
-            score: -1
       - trash_ids:
           # Misc
           - 7ba05c6e0e14e793538174c679126996 # Multi
@@ -140,8 +122,8 @@ sonarr:
           - name: 720p
             score: 1
   sonarr4k:
-    base_url: http://docker02.chrxnn.lan:26101/
-    api_key: 4a62d5e30bb04638906c388ac1ed4259
+    base_url: 
+    api_key: 
     #quality_definition:
       #type: series
     delete_old_custom_formats: true
@@ -224,17 +206,9 @@ sonarr:
           # Unwanted
           - 85c61753df5da1fb2aab6f2a47426b09 # BR-DISK
           - 9c11cd3f07101cdba90a2d81cf0e56b4 # LQ
-          - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
         quality_profiles:
           - name: 2160p
       - trash_ids:
-          - 15a05bc7c1a36e2b57fd628f8977e2fc # AV1
-          - 4aee45b0868229c4fbd8bad3e315f1d0 # MPEG2
-        quality_profiles:
-          - name: 2160p
-            score: -10000
-      - trash_ids:
-          - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
         quality_profiles:
           - name: 2160p
@@ -244,12 +218,6 @@ sonarr:
         quality_profiles:
           - name: 2160p
             score: 10
-      - trash_ids:
-          - 82d40da2bc6923f41e14394075dd4b03 # No-RlsGroup
-          - 1b3994c551cbb92a2c781af061f4ab44 # Scene
-        quality_profiles:
-          - name: 2160p
-            score: -1
       - trash_ids:
           # Misc
           - 7ba05c6e0e14e793538174c679126996 # Multi
@@ -271,8 +239,8 @@ sonarr:
 radarr:
   radarr1080p:
     # Set the URL/API Key to your actual instance
-    base_url: http://docker02.chrxnn.lan:26200
-    api_key: edbbaae1f5254b3c8cb42bded11bf6f5
+    base_url: 
+    api_key: 
     #quality_definition:
       #type: movie
     delete_old_custom_formats: true
@@ -398,8 +366,8 @@ radarr:
             score: 1
   radarr4k:
     # Set the URL/API Key to your actual instance
-    base_url: http://docker02.chrxnn.lan:26201
-    api_key: a528c063db9d4feebbf6e6889d240d60
+    base_url: 
+    api_key: 
     #quality_definition:
       #type: movie
     delete_old_custom_formats: true
