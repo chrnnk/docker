@@ -1,0 +1,56 @@
+services:
+
+  radarr-1080p:
+    container_name: radarr-1080p
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true
+    ports:
+      - 26200:7878/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies
+      - $APPDATA/radarr-1080p:/config
+
+  radarr-4k:
+    container_name: radarr-4k
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true   
+    ports:
+      - 26201:7878/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies
+      - $APPDATA/radarr-4k:/config
+
+  radarr-anime:
+    container_name: radarr-anime
+    image: lscr.io/linuxserver/radarr
+    restart: unless-stopped
+    environment:
+      - TZ=$TZ
+      - PUID=$PUID
+      - PGID=$PGID
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+      - TP_THEME=trueblack
+      - TP_COMMUNITY_THEME=true   
+    ports:
+      - 26202:7878/tcp
+    volumes:
+      - $MEDIADIR/movies:/mnt/media/movies
+      - $APPDATA/radarr-anime:/config
+
+networks:
+  br0:
+    external: true
