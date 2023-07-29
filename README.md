@@ -4,16 +4,16 @@ Collection of commands/scripts for Docker. Listed below are commands I frequentl
 ### Link to Linux
 https://github.com/chrxnn/linux
 
-### Show running
-```sh
-docker ps
-```
 ### Basic commands
 Available commands: start stop restart pause logs
 ```sh
 docker [command] [containername]
 ```
-### Show docker stats, cpu mem net storage
+Show running containers
+```sh
+docker ps
+```
+Show docker stats, cpu mem net storage
 ```sh
 docker stats
 ```
@@ -23,18 +23,20 @@ docker system df
 docker ps --size
 sudo du -h $(docker inspect --format='{{.LogPath}}' $(docker ps -qa)) | sort -hr
 ````
-### Stop all containers
-```sh
-docker stop $(docker ps -q)
-```
-### Restart all containers
-```sh
-docker restart $(docker ps -aq)
-```
-### Pull all new images
+### Commands for all containers
+Pull all new images
 ```sh
 docker images | awk '{print $1":"$2}' | grep -v REPOSITORY | xargs -L1 docker pull 
 ```
+Stop all containers
+```sh
+docker stop $(docker ps -q)
+```
+Restart all containers
+```sh
+docker restart $(docker ps -aq)
+```
+
 ### Docker cleanup
 ```sh
 docker image prune -a
