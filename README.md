@@ -17,12 +17,13 @@ Show docker stats, cpu mem net storage
 ```sh
 docker stats
 ```
-### More docker size commands
+Docker size commands
 ```
 docker system df
 docker ps --size
 sudo du -h $(docker inspect --format='{{.LogPath}}' $(docker ps -qa)) | sort -hr
 ````
+
 ### Commands for all containers
 Pull all new images
 ```sh
@@ -36,20 +37,21 @@ Restart all containers
 ```sh
 docker restart $(docker ps -aq)
 ```
+Print all container names:
+```sh
+docker ps --format ‘{{.Names}}’
+```
+Print all container images:
+```sh
+docker ps --format ‘{{.Image}}’
+```
 
 ### Docker cleanup
 ```sh
 docker image prune -a
 docker system prune --volumes
 ```
-### Print all container names:
-```sh
-docker ps --format ‘{{.Names}}’
-```
-### Print all container images:
-```sh
-docker ps --format ‘{{.Image}}’
-```
+
 ### Convert running docker to compose
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/red5d/docker-autocompose CONTAINERNAME >> CONTAINERNAME.yml
