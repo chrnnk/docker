@@ -1,7 +1,7 @@
 # Useful Docker commands
 - Collection of commands/scripts for Docker. Listed below are commands I frequently use but often forget the exact syntax for.
 - Link to Linux - https://github.com/chrxnn/linux
-###
+---
 ### Basic commands
 Available commands: start stop restart pause logs
 ```sh
