@@ -45,8 +45,12 @@ docker ps --format ‘{{.Image}}’
 ```
 ---
 ### Docker cleanup
+Cleanup docker images
 ```sh
 docker image prune -a
+```
+Cleanup docker volumes
+```sh
 docker system prune --volumes
 ```
 ---
