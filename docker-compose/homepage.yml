@@ -11,7 +11,7 @@ services:
     image: ghcr.io/benphelps/homepage:latest
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - 33101:3000
     volumes:
       - $APPDATA/homepage:/app/config # Make sure your local config directory exists
     security_opt:
