@@ -51,8 +51,8 @@ services:
       - $APPDATA/authentik/media:/media
       - $APPDATA/authentik/custom-templates:/templates
     ports:
-      - "${COMPOSE_PORT_HTTP:-9000}:9000"
-      - "${COMPOSE_PORT_HTTPS:-9443}:9443"
+      - 33102:9000
+      - 33103:9443
     depends_on:
       - authentik-postgresql
       - authentik-redis
