@@ -1,5 +1,10 @@
 version: "3.4"
 
+networks:
+  default:
+    external: true
+    name: custom-bridge
+
 services:
   authentik-postgresql:
     image: docker.io/library/postgres:12-alpine
