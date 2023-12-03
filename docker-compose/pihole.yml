@@ -17,6 +17,8 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 33480:80/tcp
+    dns:
+      - 127.0.0.1
     volumes:
       - $APPDATA/pihole/etc-pihole:/etc/pihole
       - $APPDATA/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
