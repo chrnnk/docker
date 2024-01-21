@@ -1,6 +1,6 @@
 # Useful Docker commands
 - Collection of commands/scripts for Docker. Listed below are commands I frequently use but often forget the exact syntax for.
-- Link to Linux - https://github.com/chrnnk/linux
+- Link to my Linux repo - https://github.com/chrnnk/linux
 - Script to install Docker on Linux - https://github.com/chrnnk/linux/tree/main/docker-install
 ---
 ### Basic commands
