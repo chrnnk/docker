@@ -1,29 +1,20 @@
-version: "3.9"
-
-networks:
-  default:
-    external: true
-    name: custom-bridge
-
+version: '3.3'
 services:
   komga:
-    container_name: komga
     image: gotson/komga
-    user: $PUID:$PGID
-    restart: unless-stopped
-    environment:
-      - TZ=$TZ
-    ports:
-      - 26403:8080/tcp
+    container_name: komga
     volumes:
-      - $MEDIADIR/comics:/comics:rw,slave
-      - $MEDIADIR/books:/books:rw,slave
-      - $DOWNLOADDIR:/downloads:rw,slave
-      - $APPDATA/komga:/config:rw
-    security_opt:
-      - no-new-privileges:true
-    healthcheck:
-      test: "curl --fail http://localhost:8080 || exit 1"
-      interval: 60s
-      timeout: 10s
-      retries: 2
+      - type: bind
+        source: /opt/komga/config
+        target: /config
+      - type: bind
+        source: /mnt/media/books
+        target: /mnt/media/books
+      - type: bind
+        source: /etc/timezone
+        target: /etc/timezone
+        read_only: true
+    ports:
+      - 25600:25600
+    user: "0:0"
+    restart: unless-stopped
