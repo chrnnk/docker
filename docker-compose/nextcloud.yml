@@ -10,7 +10,7 @@ docker run \
 --volume /var/run/docker.sock:/var/run/docker.sock:ro \
 nextcloud/all-in-one:latest
 
-name: <your project name>
+
 services:
     all-in-one:
         init: true
@@ -28,4 +28,3 @@ volumes:
     nextcloud_aio_mastercontainer:
         external: true
         name: nextcloud_aio_mastercontainer
-
