@@ -1,12 +1,12 @@
 services:
   overseerr:
     container_name: overseerr
+    image: sctx/overseerr
+    restart: unless-stopped
     environment:
       - LOG_LEVEL=debug
       - TZ=America/New_York
       - PORT=5055
-    image: sctx/overseerr
-    restart: unless-stopped
     ports:
       - 5055:5055/tcp
     volumes:
