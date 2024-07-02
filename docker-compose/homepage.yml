@@ -1,23 +1,10 @@
 version: "3.3"
-
-networks:
-  default:
-    external: true
-    name: custom-bridge
-
 services:
   homepage:
     container_name: homepage
-    image: ghcr.io/benphelps/homepage:latest
+    image: ghcr.io/gethomepage/homepage:latest
     restart: unless-stopped
     ports:
-      - 33101:3000
+      - 3000:3000
     volumes:
-      - $APPDATA/homepage:/app/config # Make sure your local config directory exists
-    security_opt:
-      - no-new-privileges:true
-    healthcheck:
-      test: "curl --fail http://localhost:3000 || exit 1"
-      interval: 60s
-      timeout: 10s
-      retries: 2
+      - /opt/stacks/homepage/config:/app/config
