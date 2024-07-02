@@ -1,21 +1,15 @@
 version: '3.3'
-
-networks:
-  default:
-    external: true
-    name: custom-bridge
-
 services:
   uptime-kuma:
     container_name: uptime-kuma
     image: louislam/uptime-kuma:1
     restart: unless-stopped
     environment:
-      - TZ=$TZ
+      - TZ=America/New_York
     ports:
-      - 33001:3001
+      - 3001:3001
     volumes:
-      - $APPDATA/uptime-kuma:/app/data
+      - /opt/stacks/uptime-kuma/config:/app/data
     security_opt:
       - no-new-privileges:true
     healthcheck:
