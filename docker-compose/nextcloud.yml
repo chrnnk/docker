@@ -1,40 +1,14 @@
-docker run \
---init \
---sig-proxy=false \
---name nextcloud-aio-mastercontainer \
---restart always \
---publish 8080:8080 \
---env APACHE_PORT=11000 \
---env APACHE_IP_BINDING=0.0.0.0 \
---env NEXTCLOUD_DATADIR=/mnt/ncdata \
---env NEXTCLOUD_MOUNT=/mnt/media \
---volume nextcloud_aio_mastercontainer:/mnt/docker-aio-config \
---volume /var/run/docker.sock:/var/run/docker.sock:ro \
-nextcloud/all-in-one:latest
-
-version: "3.8"
-
-volumes:
-    nextcloud_aio_mastercontainer:
-        external: true
-        name: nextcloud_aio_mastercontainer
-
 services:
-    nextcloud:
-        init: true
-        container_name: nextcloud-aio-mastercontainer
-        restart: always
-        ports:
-            - 8080:8080
-        environment:
-            - APACHE_PORT=11000
-            - APACHE_DISABLE_REWRITE_IP=1
-            - APACHE_IP_BINDING=0.0.0.0
-            - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.chrnnk.tv 10.10.62.99
-            - TRUSTED_PROXIES=10.10.62.99
-            - NEXTCLOUD_DATADIR=/mnt/ncdata
-            - NEXTCLOUD_MOUNT=/mnt/media
-        volumes:
-            - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
-            - /var/run/docker.sock:/var/run/docker.sock:ro
-        image: nextcloud/all-in-one:latest
+  nextcloud:
+    container_name: nextcloud
+    image: lscr.io/linuxserver/nextcloud:latest
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    ports:
+      - 444:443
+    volumes:
+      - /opt/stacks/nextcloud/config:/config
+      - /opt/stacks/nextcloud/data:/data
