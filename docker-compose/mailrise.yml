@@ -1,0 +1,10 @@
+services:
+  mailrise:
+    image: yoryan/mailrise
+    container_name: mailrise
+    ports:
+      - 8025:8025
+    restart: unless-stopped
+    volumes:
+      - ./mailrise.conf:/etc/mailrise.conf:ro
+      - ./letsencrypt:/etc/letsencrypt
